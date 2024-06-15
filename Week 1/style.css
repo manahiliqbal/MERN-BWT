@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {  
+    line-height: 1.6;
+    font-family: sans-serif;
+}
+
+
+#mainHeader {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+h1 {
+    text-align: center;     
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#navigation {
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#links-section {
+    display: inline;
+    margin-right: 20px;
+}
+
+#links {
+    text-decoration: none;
+    color:black;
+} 
+#links:hover{
+    text-decoration: underline;
+}
+div {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+} 
+.images-section {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}  
+.images-section img {
+    width: 100%;
+    height: auto;
+}
+
+
+#quote {
+    text-align: center;
+    font-style: italic;
+}
+
+form {
+    text-align: center;
+}
+
+.form-div {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+#form-header {
+    text-align: center;
+}
+.form-submit {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#mainFooter {
+    text-align: center;
+    font-size: 10px;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+}
+#about-div{
+    text-align: left;
+    padding: 5% 15% 5% 15%;
+}
+.core-values{
+    list-style: none;
+}
+p{
+    padding: 5px 0px 5px 0px;
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+#contact-form{
+    margin-top: 50px;
+}
+.form-div {
+    margin-bottom: 20px;
+}
+.form-div label{
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: block;
+}  
+.contact-input, .form-div textarea {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
