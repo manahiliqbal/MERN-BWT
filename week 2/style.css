@@ -96,17 +96,6 @@ hr {
     filter: blur(0);
     transition: filter 0.3s ease-in-out;
 }
-@media (max-width: 1024px) {
-    .feed .post {
-        width: calc(100% / 2);
-    }
-}
-
-@media (max-width: 768px) {
-    .feed .post {
-        width: 100%;
-    }
-}
 .post:hover {
     filter: blur(2px);
 }
