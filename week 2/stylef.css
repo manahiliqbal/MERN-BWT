@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1% 10%;
+    background-color: #faf8f8;
+}
+.profile {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    align-items: center;
+    padding: 10px 20px;
+}
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+.profile-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+.stat {
+    text-align: center;
+}
+.stat-value {
+    font-size: 16px;
+    color: #333;
+    margin: 0 5px;
+}
+.follow-btn,
+.message-btn {   
+    border: none;
+    margin: 10px 3px 0 3px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.follow-btn{
+    background-color: #3897f0;
+    color: #fff;
+}
+.message-btn {
+    background-color: #ddd;
+    color: 000;
+}
+.follow-btn:hover{
+    background-color: #2684f3;
+}
+.message-btn:hover {
+    background-color: rgb(203, 202, 202);
+}
+.username{
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+.profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(112, 108, 108, 0.498);
+}
+.profile-info {
+    padding: 10px 0;
+}
+.profile-info h2 {
+    margin: 10px 0;
+    font-size: 1.0rem;
+}
+.profile-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+hr {
+    opacity: 0.5;
+}
+.feed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.feed .post {
+    padding: 5px;
+    flex-basis: calc(100% / 3);
+    max-height: 400px;
+    position: relative;
+    overflow: hidden;
+    filter: blur(0);
+    transition: filter 0.3s ease-in-out;
+}
+@media (max-width: 1024px) {
+    .feed .post {
+        width: calc(100% / 2);
+    }
+}
+
+@media (max-width: 768px) {
+    .feed .post {
+        width: 100%;
+    }
+}
+.post:hover {
+    filter: blur(2px);
+}
+.post img {
+    width: 100%;
+    height: auto;
+}
+.footer {
+    padding: 20px 0;
+    text-align: center;
+}
+.footer-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer-links li {
+    margin: 0 10px;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
