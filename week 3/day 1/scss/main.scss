@@ -1,0 +1,79 @@
+@import './resets', './variables';
+
+@mixin gridDisplay($direction) {
+    display: grid;
+    grid-gap: 30px;
+    place-items: $direction; 
+}
+@mixin theme($light-theme: true){
+    @if $light-theme{
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+@mixin mobile {
+    @media (max-width: $mobile)
+    {
+        @content;
+    }
+}
+body {
+    font-family: Arial, sans-serif;
+    background: $dark-color;
+    color: $text-color;
+    padding: 50px;
+    @include gridDisplay(center);
+    
+}
+.cards-container {
+    @include gridDisplay(start);
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    padding: 20px;
+    @include mobile(){
+        grid-template-columns: 1fr;
+    }
+}
+.card-item {
+    background-color: $primary-color;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }   
+    h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    p {
+        font-size: 0.9rem;
+        color: $item-color;
+        margin-bottom: 10px;
+    }
+    span {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: $btn-color;
+        color: $accent-color;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: $card-on-hover-color;
+    }
+}
+
+.light {
+    @include theme($light-theme: false);
+}
+
