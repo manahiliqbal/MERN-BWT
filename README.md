@@ -1,4 +1,4 @@
-#Bytewise MERN Fellowship Repository
+Bytewise MERN Fellowship Repository
 
 Welcome to my repository documenting my progress through the Bytewise MERN fellowship!
 
