@@ -18,5 +18,3 @@ I hope you're all getting comfortable with JavaScript fundamentals! Today, we’
 Create a small project or modify an existing one by applying DOM manipulation techniques learned from the video. Save your work in the folder and upload it to your GitHub repository. The deadline for submission is at the end of the week.
 
 Let’s make our web pages come to life with JavaScript and DOM manipulation!
-
-Happy coding!
