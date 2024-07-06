@@ -1,0 +1,16 @@
+Week 03 (Day 1): Learn SASS
+🚩 Tasks for the Day:
+
+Watch the following video to understand SASS: Learn SASS
+
+📖 What you'll learn:
+
+* What SASS is and how it enhances CSS
+* SASS syntax and features
+* How to use variables, nesting, and mixins in SASS
+* Best practices for writing maintainable and scalable CSS with SASS
+
+📝 Submission:
+Convert one of your existing CSS files to SASS by using variables, nesting, and mixins. Save your work in the folder and upload it to your GitHub repository. The deadline for submission is the end of the week.
+
+Let's supercharge our CSS skills with SASS!
