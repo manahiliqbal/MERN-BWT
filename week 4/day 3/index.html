@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-blue-100 h-screen flex items-center justify-center">
+    <div class="w-full max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+            <div class="p-8">
+                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Weather App</div>
+                <form id="weatherForm" class="mt-2">
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                        <div class="mt-1">
+                            <input type="text" name="city" id="city" required class="px-3 py-2 border border-gray-300 rounded-md w-full">
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Get Weather</button>
+                </form>
+                <div id="weatherResult" class="mt-4 hidden">
+                    <p class="text-gray-700"><strong>Temperature:</strong> <span id="temperature"></span> °C</p>
+                    <p class="text-gray-700"><strong>Humidity:</strong> <span id="humidity"></span>%</p>
+                    <p class="text-gray-700"><strong>Description:</strong> <span id="description"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
