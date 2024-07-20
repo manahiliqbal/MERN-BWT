@@ -1,0 +1,16 @@
+{
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Water Plants",
+        "day": "May 11",
+        "reminder": true
+      },
+      {
+        "id": 2,
+        "text": "Buy grocery",
+        "day": "Feb 6",
+        "reminder": true
+      }
+    ]
+  }
