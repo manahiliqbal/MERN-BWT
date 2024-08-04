@@ -8,7 +8,6 @@ import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
-
 import { app, server } from "./socket/socket.js";
 
 dotenv.config();
@@ -16,7 +15,7 @@ dotenv.config();
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 5173;
 
-app.use(express.json());
+app.use(express.json()); 
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);

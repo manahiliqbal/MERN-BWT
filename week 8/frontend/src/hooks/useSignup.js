@@ -18,13 +18,24 @@ const useSignup = () => {
 				body: JSON.stringify({ fullName, username, password, confirmPassword, gender }),
 			});
 
-			const data = await res.json();
+			const responseText = await res.text(); // Get raw response text
+			console.log('Raw response text:', responseText);
+
+			// Check if response is empty
+			if (!responseText) {
+				throw new Error('Empty response from server');
+			}
+
+			const data = JSON.parse(responseText); // Manually parse the JSON
+			console.log('Parsed response data:', data);
+
 			if (data.error) {
 				throw new Error(data.error);
 			}
 			localStorage.setItem("chat-user", JSON.stringify(data));
 			setAuthUser(data);
 		} catch (error) {
+			console.error('Error during signup:', error);
 			toast.error(error.message);
 		} finally {
 			setLoading(false);
