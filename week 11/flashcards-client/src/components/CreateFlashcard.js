@@ -6,24 +6,27 @@ const CreateFlashcard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const response = await fetch('/api/flashcards', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ question, answer, userId: 'sample-user-id' }),
-    });
-
-    if (response.ok) {
-      setQuestion('');
-      setAnswer('');
-      alert('Flashcard created successfully!');
-    } else {
-      alert('Failed to create flashcard.');
+  
+    try {
+      const response = await fetch('/api/flashcards', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question, answer, userId: 'sample-user-id' }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create flashcard');
+      }
+  
+      const data = await response.json();
+      console.log('Flashcard created:', data);
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
-
+  
   return (
     <div className="p-8">
       <h2 className="text-2xl font-bold mb-4">Create a New Flashcard</h2>
