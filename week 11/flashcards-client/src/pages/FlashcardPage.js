@@ -3,30 +3,58 @@ import React, { useState } from 'react';
 const FlashcardPage = () => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+    setSuccessMessage(''); 
+    setErrorMessage('');
 
-    const response = await fetch('/api/flashcards', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ question, answer, userId: 'sample-user-id' }),
-    });
+    if (!question || !answer) {
+      setErrorMessage('Both question and answer are required.');
+      return;
+    }
 
-    if (response.ok) {
-      setQuestion('');
-      setAnswer('');
-      alert('Flashcard created successfully!');
-    } else {
-      alert('Failed to create flashcard.');
+    try {
+      const token = localStorage.getItem('token'); 
+      const response = await fetch('/api/flashcards', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': token, 
+        },
+        body: JSON.stringify({ question, answer }), 
+      });
+
+      if (response.ok) {
+        setSuccessMessage('Flashcard created successfully!');
+        setQuestion('');  
+        setAnswer('');
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(`Failed to create flashcard: ${errorData.message}`);
+      }
+    } catch (error) {
+      setErrorMessage('Error in frontend request');
+      console.error('Error in frontend request:', error); 
     }
   };
 
   return (
     <div className="p-8 bg-dark-purple min-h-screen text-white">
       <h2 className="text-2xl font-bold mb-4">Create a New Flashcard</h2>
+      {successMessage && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+            <span className="block sm:inline">{successMessage}</span>
+          </div>
+        )}
+
+        {errorMessage && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+            <span className="block sm:inline">{errorMessage}</span>
+          </div>
+        )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block">Question</label>

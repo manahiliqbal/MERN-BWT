@@ -1,55 +1,63 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const path = require('path');
+
+dotenv.config(); 
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-require('dotenv').config();
+
+
+const flashcardRoutes = require('./routes/flashcardRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const authRoutes = require('./routes/authRoutes');
+
 
 const app = express();
-app.use(bodyParser.json());
+
+
+app.use(cors());
+app.use(express.json()); 
+
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+})
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.error('MongoDB connection error:', err));
+
+
+app.use('/api/flashcards', flashcardRoutes); 
+app.use('/api/payment', paymentRoutes);
+app.use('/', require('./routes/authRoutes'));
+
+app.use(express.static(path.join(__dirname, '..', 'flashcards-client', 'build')));
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'flashcards-client', 'build', 'index.html'));
 });
 
-const flashcardSchema = new mongoose.Schema({
-  question: String,
-  answer: String,
-  userId: String,
-});
-
-const Flashcard = mongoose.model('Flashcard', flashcardSchema);
-
-app.post('/api/flashcards', async (req, res) => {
-  const { question, answer, userId } = req.body;
-  const flashcard = new Flashcard({ question, answer, userId });
-  await flashcard.save();
-  res.status(201).send(flashcard);
-});
-
-app.get('/api/flashcards/:userId', async (req, res) => {
-  const flashcards = await Flashcard.find({ userId: req.params.userId });
-  res.send(flashcards);
-});
-
-app.post('/api/checkout', async (req, res) => {
+app.post('/create-payment-intent', async (req, res) => {
   const { amount } = req.body;
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount,
+      amount, 
       currency: 'usd',
-      payment_method_types: ['card'],
     });
 
     res.send({
       clientSecret: paymentIntent.client_secret,
     });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send({ error: error.message });
   }
 });
 
-app.listen(5000, () => {
-  console.log('Server is running on port 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

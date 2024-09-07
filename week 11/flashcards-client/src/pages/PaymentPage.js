@@ -1,44 +1,21 @@
 import React from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutPage from './CheckoutPage'; 
 
-const stripePromise = loadStripe('your-public-stripe-key');
 
-const CheckoutForm = () => {
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const { error, paymentIntent } = await stripe.confirmCardPayment('client-secret-from-server', {
-      payment_method: {
-        card: elements.getElement(CardElement),
-      },
-    });
-
-    if (error) {
-      console.error(error);
-    } else if (paymentIntent) {
-      console.log('Payment succeeded:', paymentIntent);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="bg-dark-purple p-8 rounded-lg">
-      <CardElement className="bg-dark-purple p-4 rounded-lg border border-light-purple" />
-      <button type="submit" className="bg-light-purple px-4 py-2 rounded-lg mt-4">Pay</button>
-    </form>
-  );
-};
+const stripePromise = loadStripe('pk_test_51PwLRvDvX0XHuqH0rFm7BdnulS9J07Gsm0LOVaZY6qh1KCmnVUaUEdW2AB6vmppzTYrQNR45SzGhembIMVlcnEpa001qtqMgbX');
 
 const PaymentPage = () => {
   return (
-    <Elements stripe={stripePromise}>
-      <div className="flex items-center justify-center h-screen bg-dark-purple text-white">
-        <CheckoutForm />
-      </div>
-    </Elements>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+      <h1 className="text-4xl font-bold mb-8">Buy Premium</h1>
+      <p className="text-lg mb-6">Upgrade your plan for unlimited flashcards!</p>
+
+      <Elements stripe={stripePromise}>
+        <CheckoutPage />
+      </Elements>
+    </div>
   );
 };
 

@@ -17,15 +17,19 @@ const CreateFlashcard = () => {
       });
   
       if (!response.ok) {
-        throw new Error('Failed to create flashcard');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to create flashcard');
       }
   
       const data = await response.json();
       console.log('Flashcard created:', data);
+      alert('Flashcard created successfully!');
     } catch (error) {
       console.error('Error:', error);
+      alert(error.message);
     }
   };
+  
   
   return (
     <div className="p-8">

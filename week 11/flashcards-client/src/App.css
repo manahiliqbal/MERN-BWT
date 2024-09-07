@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+.lottie-container {
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
